@@ -74,10 +74,16 @@ body {
 /* BUTTONS */
 button {
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 10px 12px;
-  color: inherit;
+  background: var(--card);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 0.85;
 }
 
 /* TASK LIST */
@@ -228,11 +234,13 @@ button {
 
 .settingsModal input,
 .settingsModal select {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: transparent;
+  background: var(--card);
   color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  outline: none;
+  appearance: none; /* important */
 }
 
 /* SETTINGS ITEMS */
@@ -275,4 +283,27 @@ button {
   background: black;
   color: white;
   padding: 10px;
+}
+
+.form button {
+  background: #3b82f6;
+  color: white;
+}
+
+.settingsBtns button:first-child {
+  background: #22c55e;
+  color: white;
+}
+
+.settingsBtns button:last-child {
+  background: #ef4444;
+  color: white;
+}
+
+body[data-theme="dark"] button {
+  border: 1px solid #334155;
+}
+
+body[data-theme="dark"] select {
+  border: 1px solid #334155;
 }
