@@ -1,37 +1,278 @@
-.container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f3f4f6;
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.card {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 350px;
+/* THEME VARIABLES (LIGHT DEFAULT) */
+:root {
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --text: #111;
+  --sidebar: #ffffff;
+  --modal: #ffffff;
+  --task: #ffffff;
+  --border: #ddd;
+}
+
+/* DARK THEME */
+body[data-theme="dark"] {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #ffffff;
+  --sidebar: #111827;
+  --modal: #1e293b;
+  --task: #334155;
+  --border: #334155;
+}
+
+/* BODY */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-.info {
-  margin: 1rem 0;
-  text-align: left;
+/* MAIN CONTAINER */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  color: var(--text);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* FORM */
+.form {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.form input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: transparent;
+  color: var(--text);
+}
+
+/* BUTTONS */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: inherit;
+}
+
+/* TASK LIST */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* TASK ITEM */
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--task);
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+/* TASK BUTTONS */
+.task button {
+  margin-left: 5px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+/* EDIT */
+.task button:first-child {
+  background: #ffc107;
+}
+
+/* DELETE */
+.task button:last-child {
+  background: #f44336;
+  color: white;
+}
+
+/* BUTTON GROUP */
+.btnGroup {
+  display: flex;
+  gap: 10px;
+}
+
+/* MENU BUTTON */
+.menuBtn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 22px;
+  color: white;
+  background-color: #333;
+  padding: 6px 12px;
+  border-radius: 50%;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
+  background: var(--sidebar);
+  color: var(--text);
+  padding: 20px;
+  transition: 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.open {
+  left: 0;
+}
+
+/* PROFILE */
+.profile {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.profile h2 {
+  color: #38bdf8;
+}
+
+.profile p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* SIDEBAR BUTTONS */
+.settingsBtn,
+.logoutBtn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.settingsBtn {
+  background: #1e293b;
+  color: white;
+}
+
+.settingsBtn:hover {
+  background: #334155;
 }
 
 .logoutBtn {
-  margin-top: 1rem;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 8px;
   background: #ef4444;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
 }
 
-.logoutBtn:hover {
-  background: #dc2626;
+/* CLOSE BUTTON */
+.closeBtn {
+  align-self: flex-end;
+  background: transparent;
+  font-size: 18px;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+/* SETTINGS MODAL */
+.settingsModal {
+  background: var(--modal);
+  color: var(--text);
+  padding: 25px;
+  border-radius: 12px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.settingsModal input,
+.settingsModal select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+/* SETTINGS ITEMS */
+.settingItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.settingItem label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+/* SETTINGS BUTTONS */
+.settingsBtns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.saveBtn {
+  background: #22c55e;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.closeBtn {
+  background: #ef4444;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+/* LOGOUT BUTTON (MAIN) */
+.logout {
+  margin-top: 20px;
+  width: 100%;
+  background: black;
+  color: white;
+  padding: 10px;
 }
